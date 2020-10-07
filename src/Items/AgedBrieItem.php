@@ -18,4 +18,17 @@ class AgedBrieItem extends Item
     {
         parent::__construct(self::NAME, $sell_in, $quality);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function updateQuality(): void
+    {
+        // Update sell in date
+        --$this->sell_in;
+
+        // Quality increases over time
+        $this->quality += 2;
+        $this->verifyQuality();
+    }
 }

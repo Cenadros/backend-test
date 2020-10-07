@@ -46,6 +46,9 @@ class Item
         return "{$this->name}, {$this->sell_in}, {$this->quality}";
     }
 
+    /**
+     * Updates quality for the item.
+     */
     public function updateQuality(): void
     {
         // Update sell in date
