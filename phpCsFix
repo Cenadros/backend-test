@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+echo "Fixinig php code..."
+
+if [ -x "$(command -v php-cs-fixer)" ]
+then
+    # When php-cs-fixer is in PATH
+    php-cs-fixer fix --config=".php_cs" --show-progress=estimating || exit 1
+else
+    #
+    # When no php-cs-fixer is in path we will try to run it using the docker container
+    #
+
+    # Check if container is inyected
+    if [ -z "$DOCKER_PHP_FIXER_CONTAINER" ]
+    then
+        DOCKER_PHP_FIXER_CONTAINER='backend-test'
+    fi
+
+    if [ -z "$DOCKER_PHP_FIXER_WORKDIR" ]
+    then
+        DOCKER_PHP_FIXER_WORKDIR="/var/www/"
+    fi
+
+    if [ -z "$DOCKER_PHP_FIXER_USER" ]
+    then
+        DOCKER_PHP_FIXER_USER="1000"
+    fi
+
+    docker exec --user $DOCKER_PHP_FIXER_USER --workdir=$DOCKER_PHP_FIXER_WORKDIR -t -e TERM=xterm \
+        $DOCKER_PHP_FIXER_CONTAINER php-cs-fixer fix --config=".php_cs" --show-progress=estimating || exit 1
+fi
