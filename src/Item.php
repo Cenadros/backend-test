@@ -8,6 +8,11 @@ namespace Runroom\GildedRose;
 class Item
 {
     /**
+     * Quality limits.
+     */
+    const QUALITY_UPPER_LIMIT = 50;
+    const QUALITY_LOWER_LIMIT = 0;
+    /**
      * @var string
      */
     public $name;
@@ -21,12 +26,6 @@ class Item
      * @var int
      */
     public $quality;
-
-    /**
-     * Quality limits.
-     */
-    const QUALITY_UPPER_LIMIT = 50;
-    const QUALITY_LOWER_LIMIT = 0;
 
     /**
      * Item constructor.

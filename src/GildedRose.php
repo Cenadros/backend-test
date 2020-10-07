@@ -2,11 +2,6 @@
 
 namespace Runroom\GildedRose;
 
-use Runroom\GildedRose\Items\AgedBrieItem;
-use Runroom\GildedRose\Items\BackStageItem;
-use Runroom\GildedRose\Items\SulfurasItem;
-use function PHPUnit\Framework\isNan;
-
 class GildedRose
 {
     /** @var Item[] */
@@ -26,10 +21,7 @@ class GildedRose
     public function update_quality()
     {
         foreach ($this->items as $item) {
-            // default items
-            if (!in_array($item->name, [SulfurasItem::NAME])) {
-                $item->updateQuality();
-            }
+            $item->updateQuality();
         }
     }
 }

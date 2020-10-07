@@ -18,4 +18,12 @@ class SulfurasItem extends Item
     {
         parent::__construct(self::NAME, $sell_in, $quality);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function updateQuality(): void
+    {
+        // Never changes
+    }
 }

@@ -20,26 +20,23 @@ class BackStageItem extends Item
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function updateQuality(): void
     {
+        // In any case quality increases
         ++$this->quality;
 
-        if ($this->sell_in < 11) {
-            if ($this->quality < 50) {
-                $this->quality = $this->quality + 1;
-            }
-        }
         if ($this->sell_in < 6) {
-            if ($this->quality < 50) {
-                $this->quality = $this->quality + 1;
-            }
+            $this->quality += 2;
+        } elseif ($this->sell_in < 11) {
+            ++$this->quality;
         }
 
         // Update sell in date
         --$this->sell_in;
 
+        // Quality is zero if sell in date is zero
         if ($this->sell_in < 0) {
             $this->quality = 0;
         }
