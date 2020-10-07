@@ -2,20 +2,34 @@
 
 namespace Runroom\GildedRose;
 
+/**
+ * Class Item.
+ */
 class Item
 {
+    /**
+     * @var string
+     */
     public $name;
+
+    /**
+     * @var int
+     */
     public $sell_in;
+
+    /**
+     * @var int
+     */
     public $quality;
 
-    public function __construct($name, $sell_in, $quality)
+    public function __construct(string $name, int $sell_in, int $quality)
     {
         $this->name = $name;
         $this->sell_in = $sell_in;
         $this->quality = $quality;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return "{$this->name}, {$this->sell_in}, {$this->quality}";
     }
