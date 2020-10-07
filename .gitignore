@@ -1,0 +1,11 @@
+coverage
+vendor
+
+phpunit.xml
+composer.lock
+
+# IDE #
+/.idea/
+
+# CACHE #
+*.cache
