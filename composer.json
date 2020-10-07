@@ -32,7 +32,7 @@
     "scripts": {
         "test": "vendor/bin/phpunit",
         "psalm": "vendor/bin/psalm --show-info=true",
-        "phpStan": "vendor/bin/phpstan analyse"
+        "phpstan": "vendor/bin/phpstan analyse"
     },
     "minimum-stability": "stable"
 }

@@ -1,45 +1,46 @@
 # Backend Developer Test
 
-## Objetivo
-
-El objetivo es valorar tu capacidad de comprensión y mejora de código que no has escrito tú.
-
-El código de la carpeta `src` está mal estructurado pero tiene buena cobertura de tests,
-deberás **refactorizarlo** para hacerlo más comprensible, mantenible y escalable. 
-
-Todo esto, deberás hacerlo manteniendo los tests funcionando. Es posible que necesites iterarlos
-llegado a cierto punto de la prueba, ya sea porque cambies algun nombre de clase o porque cambien 
-parámetros de entrada. No hay ningúna limitación al respecto.
-
-La única limitación es que la funcionalidad se mantenga igual. (Puedes modificar la forma en la que 
-entran y salen los parámetros si consideras que eso mejora la comprensión)
-
-La duración de la prueba debe ser inferior a las 3 horas.
+## Requisitos
+* Docker: https://docs.docker.com/engine/install/
+* Docker compose: https://docs.docker.com/compose/install/
 
 ## Como empezar
+Para la resolución de este problema se ha optado por dockerizar la aplicación de tal manera que se puedan utilizar todas
+las herramientas necesarias.
 
-1. Hacer un repositorio nuevo utilizando el código de este (sin hacer un fork).
-2. Hacer al menos un primer commit con el código original, para ver la hora de inicio.
-3. Hacer commits individuales por cada refactor que se está haciendo. El último commit marca el final.
+Se ha incluido un `Dockerfile` y un `docker-compose.yml` con la información de la imagen. En esta imagen de `php7-4` se
+incluye tanto `composer` como `php-cs-fixer` y se ubica el proyecto dentro del directorio `var/www` del container.
 
-## Que valoramos
+Para comenzar, desde la raiz del proyecto en una terminal lanzaremos:
 
-* Que los test sigan pasando después del refactor
-* La utilización de Git
-* Aplicación de patrones de diseño
-* Estilo de código siguiendo el PSR
-* Simplicidad de la solución
-* Mejora en la API de las clases
-* PHPStan reporta 0 errores en el nivel actual
-* Psalm reporta 0 errores en el nivel actual 
+```sh
+docker-compose up -d
+```
 
-## Bonus points
+Este comando construirá la imagen a partir del Dockerfile. Una vez generada la imagen ya podremos acceder al container
+utilizando los scripts incluidos:
 
-Si has cumplido todos los requisitos que valoramos, y te sobra tiempo puedes mejorar tu prueba
-ampliando con estos nuevos requisitos (recomendamos seguir el orden definido):
+```sh
+./php.73
+```
 
-* Incrementar el nivel de PHPStan
-* Incrementar el nivel de Psalm
-* Configurar PHP-cs-fixer
-* Configuración de Github Actions para ejecutar PHPUnit, PHPStan, Psalm y PHP-cs-fixer
-* Añadir un entorno local con Docker que permita ejecutar todas las herramientas de PHP
+O en caso de necesitar entrar como root:
+```sh
+./phpRoot.73
+```
+
+Dentro de este container tendremos accesos a toda la funcionalidad de php. Para facilitar el trabajo se han incluido
+los siguientes scripts a lanzar dentro del container:
+
+* `composer test`: Este comando lanza phpUnit para comprobar los test unitarios.
+* `composer psalm`: Este comando ejecuta psalm.
+* `composer phpstan`: Este comando ejecuta phpstan
+
+Además, como se mencionó antes, se ha incluido la herramienta `php-cs-fixer` la cual podemos ejecutar desde la propia
+raiz del proyecto fuera del container con el script auxiliar:
+```sh
+./phpCsFix
+```
+
+La configuración que he seguido para el `php-cs-fix` se incluye en el fichero `.php_cs` del proyecto.
+
