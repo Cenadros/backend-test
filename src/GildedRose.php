@@ -28,9 +28,7 @@ class GildedRose
         foreach ($this->items as $item) {
             // default items
             if (!in_array($item->name, [AgedBrieItem::NAME, BackStageItem::NAME, SulfurasItem::NAME])) {
-                if ($item->quality > 0) {
-                    $item->quality = $item->quality - 1;
-                }
+                $item->updateQuality();
             }
 
             // aged and backStage
@@ -55,18 +53,11 @@ class GildedRose
             }
 
             // any item but sulfuras
-            if (SulfurasItem::NAME != $item->name) {
+            if (in_array($item->name, [AgedBrieItem::NAME, BackStageItem::NAME])) {
                 $item->sell_in = $item->sell_in - 1;
             }
 
             if ($item->sell_in < 0) {
-                // default items
-                if (!in_array($item->name, [AgedBrieItem::NAME, BackStageItem::NAME, SulfurasItem::NAME])) {
-                    if ($item->quality > 0) {
-                        $item->quality = $item->quality - 1;
-                    }
-                }
-
                 // backstage
                 if ($item->name == BackStageItem::NAME) {
                     $item->quality = 0;
