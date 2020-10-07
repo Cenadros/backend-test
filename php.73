@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker exec -it -u 1000 backend-test bash

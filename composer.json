@@ -29,5 +29,10 @@
             "Runroom\\GildedRose\\Tests\\": "tests/"
         }
     },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "psalm": "vendor/bin/psalm --show-info=true",
+        "phpstan": "vendor/bin/phpstan analyse"
+    },
     "minimum-stability": "stable"
 }
