@@ -5,6 +5,9 @@ namespace Runroom\GildedRose\Tests;
 use Runroom\GildedRose\Item;
 use PHPUnit\Framework\TestCase;
 use Runroom\GildedRose\GildedRose;
+use Runroom\GildedRose\Items\AgedBrieItem;
+use Runroom\GildedRose\Items\BackStageItem;
+use Runroom\GildedRose\Items\SulfurasItem;
 
 class GildedRoseTest extends TestCase
 {
@@ -52,7 +55,7 @@ class GildedRoseTest extends TestCase
      */
     public function agedBrieIncreasesQualityOverTime()
     {
-        $items = [new Item('Aged Brie', 0, 5)];
+        $items = [new AgedBrieItem( 0, 5)];
 
         $gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
@@ -65,7 +68,7 @@ class GildedRoseTest extends TestCase
      */
     public function qualityCannotBeGreaterThan50()
     {
-        $items = [new Item('Aged Brie', 0, 50)];
+        $items = [new AgedBrieItem( 0, 50)];
 
         $gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
@@ -78,7 +81,7 @@ class GildedRoseTest extends TestCase
      */
     public function sulfurasDoesNotChange()
     {
-        $items = [new Item('Sulfuras, Hand of Ragnaros', 10, 10)];
+        $items = [new SulfurasItem( 10, 10)];
 
         $gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
@@ -106,7 +109,7 @@ class GildedRoseTest extends TestCase
      */
     public function backstageQualityIncreaseOverTimeWithCertainRules($sellIn, $quality, $expected)
     {
-        $items = [new Item('Backstage passes to a TAFKAL80ETC concert', $sellIn, $quality)];
+        $items = [new BackStageItem( $sellIn, $quality)];
 
         $gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
