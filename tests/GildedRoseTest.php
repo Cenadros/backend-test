@@ -14,7 +14,7 @@ class GildedRoseTest extends TestCase
     /**
      * @test
      */
-    public function itemsDegradeQuality()
+    public function itemsDegradeQuality(): void
     {
         $items = [new Item('', 1, 5)];
 
@@ -27,7 +27,7 @@ class GildedRoseTest extends TestCase
     /**
      * @test
      */
-    public function itemsDegradeDoubleQualityOnceTheSellInDateHasPass()
+    public function itemsDegradeDoubleQualityOnceTheSellInDateHasPass(): void
     {
         $items = [new Item('', -1, 5)];
 
@@ -40,7 +40,7 @@ class GildedRoseTest extends TestCase
     /**
      * @test
      */
-    public function itemsCannotHaveNegativeQuality()
+    public function itemsCannotHaveNegativeQuality(): void
     {
         $items = [new Item('', 0, 0)];
 
@@ -53,7 +53,7 @@ class GildedRoseTest extends TestCase
     /**
      * @test
      */
-    public function agedBrieIncreasesQualityOverTime()
+    public function agedBrieIncreasesQualityOverTime(): void
     {
         $items = [new AgedBrieItem(0, 5)];
 
@@ -66,7 +66,7 @@ class GildedRoseTest extends TestCase
     /**
      * @test
      */
-    public function qualityCannotBeGreaterThan50()
+    public function qualityCannotBeGreaterThan50(): void
     {
         $items = [new AgedBrieItem(0, 50)];
 
@@ -79,7 +79,7 @@ class GildedRoseTest extends TestCase
     /**
      * @test
      */
-    public function sulfurasDoesNotChange()
+    public function sulfurasDoesNotChange(): void
     {
         $items = [new SulfurasItem(10, 10)];
 
@@ -90,7 +90,7 @@ class GildedRoseTest extends TestCase
         $this->assertEquals(10, $items[0]->quality);
     }
 
-    public static function backstageRules()
+    public static function backstageRules(): array
     {
         return [
             'incr. 1 if sellIn > 10' => [11, 10, 11],
@@ -107,7 +107,7 @@ class GildedRoseTest extends TestCase
      * @dataProvider backstageRules
      * @test
      */
-    public function backstageQualityIncreaseOverTimeWithCertainRules($sellIn, $quality, $expected)
+    public function backstageQualityIncreaseOverTimeWithCertainRules(int $sellIn, int $quality, int $expected): void
     {
         $items = [new BackStageItem($sellIn, $quality)];
 

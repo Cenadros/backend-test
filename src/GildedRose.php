@@ -18,7 +18,7 @@ class GildedRose
     /**
      * Update quality method.
      */
-    public function update_quality()
+    public function update_quality(): void
     {
         foreach ($this->items as $item) {
             $item->updateQuality();
